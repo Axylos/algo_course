@@ -13,7 +13,7 @@ void printArr(long *arr, long size) {
    printf("\n");
 }
 
-long * merge(long arr1[], long arr2[], long arr1Length, long arr2Length) {
+long * mergeAndCount(long arr1[], long arr2[], long arr1Length, long arr2Length) {
    long i=0, j=0, c = 0;
    long totalLength = (arr1Length + arr2Length);
 
@@ -54,7 +54,7 @@ long * merge(long arr1[], long arr2[], long arr1Length, long arr2Length) {
    return sortedArr;
 }
 
-long * mergeSort(long arr[], int arrLength) {
+long * mergeCountSort(long arr[], int arrLength) {
 
    if (arrLength < 2) {
       return arr;
@@ -71,10 +71,10 @@ long * mergeSort(long arr[], int arrLength) {
    memcpy(sub1, &arr[0], (firstHalfLength) * sizeof(arr[0]));
    memcpy(sub2, &arr[mid], (secondHalfLength) * sizeof(arr[0]));
 
-   long *newsub1 = mergeSort(sub1, firstHalfLength);
-   long *newsub2 = mergeSort(sub2, secondHalfLength);
+   long *newsub1 = mergeCountSort(sub1, firstHalfLength);
+   long *newsub2 = mergeCountSort(sub2, secondHalfLength);
 
-   long *ans = merge(newsub1, newsub2, firstHalfLength, secondHalfLength);
+   long *ans = mergeAndCount(newsub1, newsub2, firstHalfLength, secondHalfLength);
 
    return ans;
 }
@@ -90,7 +90,7 @@ int main(int argc, char *argv[]) {
 
    int dataLength = sizeof(data) / sizeof(data[0]);
 
-   long *ans = mergeSort(data, dataLength);
+   long *ans = mergeCountSort(data, dataLength);
 
    //printArr(ans, dataLength);
    printf("\nTotal number of inversions:  %ld\n\n", count);
