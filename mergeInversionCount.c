@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 long count = 0;
+long recurCount = 0;
 
 #define DATARANGE 100000
 
@@ -55,6 +56,7 @@ long * mergeAndCount(long arr1[], long arr2[], long arr1Length, long arr2Length)
 }
 
 long * mergeCountSort(long arr[], int arrLength) {
+   recurCount++;
 
    if (arrLength < 2) {
       return arr;
